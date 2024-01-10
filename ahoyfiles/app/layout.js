@@ -14,6 +14,7 @@ import {
   NavbarToggle,
 } from 'flowbite-react';
 import Link from 'next/link';
+import Notifications from '@/components/Notifications';
 
 
 
