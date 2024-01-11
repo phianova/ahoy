@@ -39,7 +39,7 @@ const UserProfile = () => {
     <div className='container bg-blue-100 mx-auto p-8'>
       <div className='mt-10'>
         <form
-          className='mx-auto mt-10 flex flex-col gap-10 w-1/2 mt-20'
+          className='mx-auto flex flex-col gap-10 w-1/2 mt-20'
           onSubmit={handleSubmit}
         >
           {isEditMode ? (
@@ -65,7 +65,7 @@ const UserProfile = () => {
                 <img
                   src={profile.profilePicture || placeholderImageUrl}
                   alt='Profile'
-                  className='w-60 h-60 rounded-full object-cover mx-auto'
+                  className='w-60 h-60  rounded-full object-cover mx-auto'
                 />
               )}
 
