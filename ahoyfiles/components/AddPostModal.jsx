@@ -26,7 +26,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
     const newPost = {
       postText,
       postImage: postImageUrl,
-      username: currentUser
+      username: currentUser.username,
     };
 
     // Add the new post to the array of existing posts

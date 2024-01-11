@@ -13,6 +13,11 @@ const UserProfile = () => {
   });
   const [isError, setIsError] = useState(false);
 
+  const audioElement = document.createElement('audio');
+
+
+
+
   useEffect(() => {
     const profileFromLS = localStorage.getItem('profile');
     if (!profileFromLS) return;
