@@ -90,7 +90,7 @@ const UserProfile = () => {
           ) : (
             <>
               <p  className="mx-auto text-2xl font-bold min-h-6">
-                {profile.name || 'Add name'}
+                {profile.username || 'Add name'}
               </p>
               {/* Display profile picture */}
               {(profile.profilePic || placeholderImageUrl) && (
