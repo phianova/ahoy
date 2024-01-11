@@ -1,116 +1,88 @@
-import Image from 'next/image'
-import { Button } from 'flowbite-react'
+'use client';
+// import { Button } from 'flowbite-react'
+import {useState, useEffect} from 'react';
+import SquawkCard from '@/components/SquawkCard';
+
+
 
 export default function Home() {
+const [posts, setPosts] = useState(null);
+const [user, setUser] = useState(null);
+
+useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('profile')));
+  console.log(JSON.parse(localStorage.getItem('profile')));
+}, []);
+
+useEffect(() => {
+  console.log(user)
+}, [user]);
+
+
+useEffect(() => {
+  const posts = JSON.parse(localStorage.getItem('posts'));
+  setPosts(posts);
+  if (!posts) return;
+}, []);
+
+
+// useEffect(() => {
+//   const checkPosts = localStorage.getItem('posts');
+//   if (!checkPosts) {
+//     localStorage.setItem('posts', JSON.stringify([
+//       {
+//         username: 'Captain Jack Sparrow',
+//         profilePic: 'https://images.unsplash.com/photo-1594189683218-b5a9a346a43f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//         postText: 'Arr! I be the captain now!',
+//         postImage: 'https://images.unsplash.com/photo-1594189683218-b5a9a346a43f?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//         likes: 0
+//       },
+//     ]));
+//   }
+// }, [posts]);
+
+// setPosts((prevPosts) => {
+//   const updatedPosts = [...prevPosts, postObject];
+//   localStorage.setItem('posts', JSON.stringify (updatedPosts));
+//   return updatedPosts;
+// }); 
+
+if (!posts) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div>
+        <h1 className='text-3xl font-bold text-center text-'>Squawks</h1> 
+<p className="text-grey-300">Arr! Thar be no squawks!</p>
+<div className='w-24 h-auto'>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M227.4 34.7c-10.1 0-20.2.2-30.2.5l6.1 65.6l-61.1-62.5c-31.3 2.5-62.5 6.6-93.8 12.5l34.2 28.4l-48-.6c35.1 100.2 6.9 182.6-.3 292.1L130 476.5c10-1.3 19.9-2.4 29.6-3.3l21.5-42.2l18.6 28.8l41.5-33.5l.8 43c82.9-.2 157.7 9.1 235.7 7.9c-28.2-73-31.2-143.6-31.9-209.2l-33.3-19.1l32.7-33.9c-.4-21.3-1.3-42-3.6-61.9l-57.4.7l50.2-41.7c-3.8-15.5-9-30.4-16.1-44.7l-29.5-23.9C335 38 281.2 34.6 227.4 34.7m58.7 37c10.6 24.75 21.1 49.5 31.7 74.3c7.5-10.5 14.9-21 22.4-31.5c16 27.2 32 54.3 48 81.5l-16.2 9.5l-33.3-56.7l-42.5 59.4l-15.2-10.9l24-33.5l-21.9-51.5l-24.6 40.1l12 22.6l-16.5 8.8l-18.3-34.5l-24.8 58.2l-17.2-7.4l32.5-76.2l7.7-18c4.8 9.2 9.6 18.3 14.5 27.4c12.5-20.6 25.1-41.11 37.7-61.6M91.2 128c6.72 1.6 13.4 3.4 19.2 5.3c-2.1 5.9-4.1 11.8-6.2 17.6c-5.79-1.6-11.72-3.4-16.9-4.7c1.39-6 2.62-12.1 3.9-18.2m37.9 13.4c6.3 3.8 12 7.2 17 12.8L132.6 167c-4-3.7-8.6-7-12.8-9.4zm28.7 32.3c2.1 7.4 2.1 15.7 1.6 22.5l-18.5-2.4c.1-5.1.3-10-1-14.5zm-21.2 35.7l17.2 7.1c-3.3 6.6-5.1 12.7-8.6 17.8l-16.3-9c2.6-5.4 5.6-10.8 7.7-15.9m-16.5 34.1l17.7 6.1c-1.5 5.4-3 11.2-3.6 16.2l-18.6-2c1.3-7.5 2.1-14 4.5-20.3m207.8 17.4c8.5 1 14.6 3 21.7 7.1l-9.8 16c-4.1-2.8-9.4-3.8-13.5-4.5zm-21.2 1.5c1.1 6.1 2.5 12.2 3.9 18.3c-5.9 1.3-11.7 3.3-16.5 5.1l-6.8-17.4c6.7-2.4 13.5-4.7 19.4-6m-37.9 15.9l11 15.1c-5.6 4-11.8 7.8-16.8 10.6l-8.9-16.4c5.1-2.9 10.6-6.3 14.7-9.3M135.3 281c1.5 4.7 4.2 9.2 6.9 12.1l-13.8 12.6c-5.5-5.7-9.5-13.5-11.2-20.1zm230.3 3.3c3.5 6.4 6.8 12.7 8.7 19.1l-17.8 5.6c-2-5.4-4.3-10.8-6.8-14.8zm-127.4 10.9l6.9 17.3c-6.4 2.7-12.9 4.8-18.6 6.5l-5-18c5.9-1.6 11.3-3.8 16.7-5.8m-83.8 6.2c5.3 1.7 10.8 3.4 15.7 4.2c-1.2 6.1-2 12.3-2.8 18.5c-7-1-14.5-3.3-20.5-5.7zm50 3.5l2.8 18.5c-7.2 1.3-13.4 1.6-19.8 1.9l-.4-18.7c5.9-.2 11.6-.8 17.4-1.7m174.5 18c1 6.4 1.6 12.9 2.2 19.3l-18.7 1.5c-.4-6-.9-11.9-2-17.8zm-67.6 30.8c18.9 3.5 44.9 16.2 68.9 33.9c7.4-9.9 14.4-20.4 21.3-31.1l30.1 12.9c-4.7 12.3-15 25.6-28.6 37.2c17 16.2 30.9 34.5 37 53c-13.8-18.1-31.1-31.8-50.3-42.8c-23.4 15.8-52.7 25.9-79.6 20.4c22.9-4.4 40.6-16.6 55.8-32.6c-16.5-7.5-33.8-13.9-51.3-20.1z"/></svg>
+</div> 
+      </div>
+    </main>
+  )
+}
+
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
+      <div className='w-full'>
+        <h1 className='text-3xl font-bold text-center'>Squawks</h1> 
+      </div>
+     
+
+      <div className='w-3/4'>
+        {/* background for posts */}
+        <div className='flex flex-wrap gap-10 mt-10 w-full' >
+          {posts && posts.map((post) => {
+            return <SquawkCard username={user.username || 'anonymous'}
+            profilePic={user.profilePic || 'https://i.pravatar.cc/300'}
+            postText={post.postText || 'no text'}
+            postImage={post.postImage || 'https://i.pravatar.cc/300'}
+            likes={post.likes || 0} />
+          })}
         </div>
-        <Button
-        className='bg-red-500'>Click me</Button>
+        
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      
     </main>
   )
 }
