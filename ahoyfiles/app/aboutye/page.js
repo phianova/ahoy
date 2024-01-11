@@ -6,10 +6,10 @@ const UserProfile = () => {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [profile, setProfile] = useState({
-    name: '',
+    username: '',
     description: '',
     available: false,
-    profilePicture: '',
+    profilePic: '',
   });
   const [isError, setIsError] = useState(false);
 
@@ -45,25 +45,25 @@ const UserProfile = () => {
           {isEditMode ? (
             <>
               {/* name */}
-              <input
+              <input 
                 className="mx-auto text-xl  placeholder-top min-h-6"
                 placeholder='Name'
-                name='name'
+                name='username'
                 onChange={handleInputChange}
-                value={profile.name}
+                value={profile.username}
               />
               {/* URL input for profile picture */}
               <input
                 className="mx-auto text-xl  placeholder-top min-h-6"
                 placeholder='Profile image URL'
-                name='profilePicture'
+                name='profilePic'
                 onChange={handleInputChange}
-                value={profile.profilePicture}
+                value={profile.profilePic}
               />
               {/* Display profile picture */}
-              {(profile.profilePicture || placeholderImageUrl) && (
+              {(profile.profilePic || placeholderImageUrl) && (
                 <img
-                  src={profile.profilePicture || placeholderImageUrl}
+                  src={profile.profilePic || placeholderImageUrl}
                   alt='Profile'
                   className='w-60 h-60  rounded-full object-cover mx-auto'
                 />
@@ -89,13 +89,13 @@ const UserProfile = () => {
             </>
           ) : (
             <>
-              <p className="mx-auto text-2xl font-bold min-h-6">
+              <p  className="mx-auto text-2xl font-bold min-h-6">
                 {profile.name || 'Add name'}
               </p>
               {/* Display profile picture */}
-              {(profile.profilePicture || placeholderImageUrl) && (
-                <img
-                  src={profile.profilePicture || placeholderImageUrl}
+              {(profile.profilePic || placeholderImageUrl) && (
+                <img 
+                  src={profile.profilePic || placeholderImageUrl}
                   alt='Profile'
                   className='w-60 h-60 object-cover shadow-lg rounded-full mx-auto'
                 />

@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddPostModal = ({ isOpen, onClose }) => {
   const [postText, setPostText] = useState("");
   const [postImageUrl, setPostImageUrl] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("profile");
+    setCurrentUser(JSON.parse(currentUser));
+  }, []);
 
   const handleTextChange = (e) => {
     setPostText(e.target.value);
@@ -20,6 +26,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
     const newPost = {
       postText,
       postImage: postImageUrl,
+      username: currentUser
     };
 
     // Add the new post to the array of existing posts
