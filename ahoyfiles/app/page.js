@@ -79,10 +79,10 @@ if (!posts) {
 
       <div className='w-3/4'>
         {/* background for posts */}
-        <div className='flex flex-wrap gap-10 mt-10 w-full' >
+        <div className='flex flex-wrap gap-10 mt-10 w-full h-full' >
           {posts && posts.map((post) => {
             return <SquawkCard username={user.username || 'anonymous'}
-            profilePic={user.profilePic || 'https://i.pravatar.cc/300'}
+            profilePic={user.profilePic || 'https://static.vecteezy.com/system/resources/previews/009/399/229/original/pirate-clipart-design-illustration-free-png.png'}
             postText={post.postText || 'no text'}
             postImage={post.postImage || 'https://i.pravatar.cc/300'}
             likes={post.likes || 0} />
