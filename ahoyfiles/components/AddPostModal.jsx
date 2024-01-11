@@ -1,4 +1,6 @@
+"use client";
 import { useState, useEffect } from "react";
+import Notifications from "./Notifications";
 
 const AddPostModal = ({ isOpen, onClose }) => {
   const [postText, setPostText] = useState("");
@@ -9,6 +11,8 @@ const AddPostModal = ({ isOpen, onClose }) => {
     const currentUser = localStorage.getItem("profile");
     setCurrentUser(JSON.parse(currentUser));
   }, []);
+  const [postError, setPostError] = useState(false)
+  const [postSuccess, setPostSuccess] = useState(false)
 
   const handleTextChange = (e) => {
     setPostText(e.target.value);
@@ -21,6 +25,18 @@ const AddPostModal = ({ isOpen, onClose }) => {
   const handleSubmit = () => {
     // Retrieve existing posts from local storage or initialize an empty array
     const existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
+      if (!postText || !postImageUrl) {
+      setPostError(true)
+      setTimeout(() => {
+        setPostError(false)
+      }, 3000)
+      return;
+    } else {
+      setPostSuccess(true)
+      setTimeout(() => {
+        setPostSuccess(false)
+      }, 3000)
+    }
 
     // Create a new post object
     const newPost = {
@@ -44,6 +60,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
   };
 
   return (
+    <div>
     <div className={`modal ${isOpen ? "block" : "hidden"}`}>
       <div className="modal-container bg-white w-96 mx-auto mt-10 p-4 rounded shadow">
         <div className="modal-content">
@@ -94,6 +111,12 @@ const AddPostModal = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
+    <div className="fixed bottom-5 right-4">
+      {postError && <Notifications title="Errarr" text="Yer marooned! Try again matey!" type="danger"/>}
+      {postSuccess && <Notifications title="Thar she blows!" text="New plunder added! Feast yer eyes!" type="success"/>}
+    </div>
+    </div>
+
   );
 };
 

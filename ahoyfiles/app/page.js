@@ -3,8 +3,6 @@
 import {useState, useEffect} from 'react';
 import SquawkCard from '@/components/SquawkCard';
 
-
-
 export default function Home() {
 const [posts, setPosts] = useState(null);
 const [user, setUser] = useState(null);
