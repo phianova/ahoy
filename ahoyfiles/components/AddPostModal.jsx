@@ -5,6 +5,12 @@ import Notifications from "./Notifications";
 const AddPostModal = ({ isOpen, onClose }) => {
   const [postText, setPostText] = useState("");
   const [postImageUrl, setPostImageUrl] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("profile");
+    setCurrentUser(JSON.parse(currentUser));
+  }, []);
   const [postError, setPostError] = useState(false)
   const [postSuccess, setPostSuccess] = useState(false)
 
@@ -36,6 +42,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
     const newPost = {
       postText,
       postImage: postImageUrl,
+      username: currentUser
     };
 
     // Add the new post to the array of existing posts
