@@ -7,20 +7,26 @@ import { Palmtree, Coins, Anchor} from 'lucide-react'
 const Notifications = ({title, text, type}) => {
     const [showNotif, setShowNotif] = useState(false);
     const [image, setImage] = useState(false);
-    const [colour, setColour] = useState("");
+    const [colour, setColour] = useState(false);
+
+    const colourEnum = {
+        "success": "#22C15F",
+        "danger": "#FF7975",
+        "info": "#4B5AFC"
+    }
     
     useEffect(() => {
         if (type === "success") {
             setImage(<Coins></Coins>)
-            setColour("success")
+            setColour("#22C15F")
             return;
         } else if (type === "danger") {
             setImage(<Palmtree></Palmtree>)
-            setColour("danger")
+            setColour("#FF7975")
             return;
         } else if (type === "info") {
             setImage(<Anchor></Anchor>)
-            setColour("info")
+            setColour("#4B5AFC")
             return;
         }
         
@@ -33,11 +39,25 @@ const Notifications = ({title, text, type}) => {
           setShowNotif(false);
         }
     }, [type]);
+
+
+    useEffect(() => {
+      console.log(type)
+    }, [type]);
+
     return (
         <div>
         {showNotif && (
         <Toast>
-        <div className={`flex flex-col gap-2 bg-${colour} text-${colour === "info" ? "white" : "black"} py-3 px-4 rounded-xl`}>
+        <div className={`flex flex-col gap-2 
+       text-${colour === "#4B5AFC" ? "white" : "black"} py-3 px-4 rounded-xl 
+        `}
+
+        style={{
+          backgroundColor: colourEnum[type],
+        }}
+        
+        >
           <div className="flex flex-row gap-2">
             {image}
             <h1 className="text-lg font-bold">{`${title}`}</h1>

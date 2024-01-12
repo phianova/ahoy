@@ -25,7 +25,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
   const handleSubmit = () => {
     // Retrieve existing posts from local storage or initialize an empty array
     const existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
-      if (!postText || !postImageUrl) {
+      if (!postText || !postImageUrl) { //TODO: add error condition for username being empty
       setPostError(true)
       setTimeout(() => {
         setPostError(false)
@@ -60,11 +60,11 @@ const AddPostModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div>
-    <div className={`modal ${isOpen ? "block" : "hidden"}`}>
-      <div className="modal-container bg-white w-96 mx-auto mt-10 p-4 rounded shadow">
+    <div >
+    <div className={`modal ${isOpen ? "block" : "hidden"} `}>
+      <div className="modal-container bg-white w-96 mx-auto mt-10 p-4 rounded shadow ">
         <div className="modal-content">
-          <h2 className="text-2xl font-bold mb-4">Add Post</h2>
+          <h2 className="text-2xl font-bold mb-4">Boast yer plunder!</h2>
           <form>
             <div className="mb-4">
               <label
@@ -104,14 +104,14 @@ const AddPostModal = ({ isOpen, onClose }) => {
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                 onClick={handleSubmit}
               >
-                Add Post
+                Add Plunder
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div className="fixed bottom-5 right-4">
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed  w-80">
       {postError && <Notifications title="Errarr" text="Yer marooned! Try again matey!" type="danger"/>}
       {postSuccess && <Notifications title="Thar she blows!" text="New plunder added! Feast yer eyes!" type="success"/>}
     </div>

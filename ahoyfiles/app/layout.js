@@ -3,6 +3,10 @@ import { Calligraffitti } from 'next/font/google'
 import { Trade_Winds } from 'next/font/google'
 import './globals.css'
 import Navibar from '@/components/NaviBar.jsx'
+
+
+
+
 const inter = Inter({ subsets: ['latin'] })
 const calligraffitti = Calligraffitti({ 
   weight: '400', subsets: ['latin'] })
