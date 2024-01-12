@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    background: linear-gradient(to bottom,  #87CEFA, #87CEFA 70%, #F5DEB3);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    
+  }
+.group{
+    background-color: #f3f5b1 ;
+}
+
+
+
+button.group:enabled:hover {
+    background-color: rgb(66 32 6);
+}
+
+
+#Navbar {
+    background-color: #523933;
+background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+}
+
+#profilecard {
+    background-color: #b0a880;
+background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+}
