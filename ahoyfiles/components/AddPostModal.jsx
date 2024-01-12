@@ -62,7 +62,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
   return (
     <div >
     <div className={`modal ${isOpen ? "block" : "hidden"} `}>
-      <div className="modal-container bg-white w-96 mx-auto mt-10 p-4 rounded shadow ">
+      <div id ="AddModal" className="modal-container bg-white w-96 mx-auto mt-10 p-4 rounded shadow ">
         <div className="modal-content">
           <h2 className="text-2xl font-bold mb-4">Boast yer plunder!</h2>
           <form>
@@ -101,7 +101,7 @@ const AddPostModal = ({ isOpen, onClose }) => {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="px-4 py-2 text-white bg-yellow-700 rounded-md hover:bg-yellow-500"
                 onClick={handleSubmit}
               >
                 Add Plunder
