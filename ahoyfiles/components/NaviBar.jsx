@@ -69,7 +69,7 @@ const Navibar = ({ profilePic}) => {
       <div>
 <Navbar id="Navbar" className ='bg-base py-5'>
 <NavbarBrand>
-  <Dropdown className="" label={
+  <Dropdown className="bg-yellow-100 " label={
     
       <Menu className="text-black hover:text-white"/>
   } arrowIcon={false} >

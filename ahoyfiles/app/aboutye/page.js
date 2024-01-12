@@ -112,7 +112,7 @@ const UserProfile = () => {
               <p className="bg-white justify-center shadow-lg rounded-lg p-8 min-h-40 text-xl">
                 {profile.description || 'Add description'}
               </p>
-              <p className='text-x'>
+              <p className='text-lg font-bold'>
                 Public Profile: {profile.available ? 'Yes' : 'No'}
               </p>
             </>
@@ -120,7 +120,7 @@ const UserProfile = () => {
 
           <button
             type='submit'
-            className={`bg-${isEditMode ? 'green' : 'cyan'}-500 text-black p-2 rounded-md shadow-lg mx-auto min-w-40`}
+            className={`bg-${isEditMode ? 'green' : 'yellow'}-700 text-white p-2 hover:bg-yellow-500 rounded-md shadow-lg mx-auto min-w-40`}
           >
             {isEditMode ? 'Update Profile' : 'Edit Profile'}
           </button>
