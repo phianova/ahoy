@@ -87,7 +87,7 @@ const UserProfile = () => {
                 value={profile.description}
               />
               <div className='flex gap-4 mx-auto'>
-                <label htmlFor='checkbox'>Make profile public?</label>
+                <label htmlFor='checkbox' className="font-bold">Make profile public?</label>
                 <input
                   type='checkbox'
                   name='available'
